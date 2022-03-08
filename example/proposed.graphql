@@ -1,0 +1,7 @@
+type Character {
+  foo: String @fake(template: "{{name.firstName}}")
+}
+
+type Query {
+  characters(whoo: String): Characters
+}

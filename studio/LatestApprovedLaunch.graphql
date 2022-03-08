@@ -1,0 +1,19 @@
+query LatestApprovedLaunch($serviceId: ID!, $variant: String!) {
+  service(id: $serviceId) {
+    variant(name: $variant) {
+      latestApprovedLaunch {
+        build {
+          result {
+            __typename
+            ... on BuildSuccess {
+              coreSchema {
+                apiDocument
+                coreDocument
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
