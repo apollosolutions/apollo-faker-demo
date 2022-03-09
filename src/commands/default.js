@@ -8,7 +8,7 @@ config();
 export default class DefaultCommand extends Command {
   static paths = [Command.Default];
 
-  graphref = Option.String("--graphref");
+  graphref = Option.String("--graphref", { required: true });
 
   remoteEndpoint = Option.String("--remote");
 

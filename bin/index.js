@@ -6,8 +6,8 @@ import DefaultCommand from "../src/commands/default.js";
 const [node, app, ...args] = process.argv;
 
 const cli = new Cli({
-  binaryLabel: `My Application`,
-  binaryName: `xxx`,
+  binaryLabel: `Apollo Faker (Demo)`,
+  binaryName: `apollo-faker-demo`,
   binaryVersion: `1.0.0`,
   enableCapture: true,
   enableColors: true,
