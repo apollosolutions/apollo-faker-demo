@@ -6,5 +6,11 @@
   "author": "lenny@apollographql.com",
   "type": "module",
   "main": "src/index.js",
-  "bin": "bin/index.js"
+  "bin": "bin/index.js",
+  "scripts": {
+    "codegen": "graphql-codegen --config codegen.yml",
+    "codegen:compile": "tsc -p studio",
+    "codegen:watch": "concurrently \"yarn codegen --watch\" \"yarn codegen:compile --watch\"",
+    "build": "yarn codegen && yarn vite build"
+  }
 }
