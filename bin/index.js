@@ -3,7 +3,7 @@
 import { Builtins, Cli } from "clipanion";
 import DefaultCommand from "../src/commands/default.js";
 
-const [node, app, ...args] = process.argv;
+const [_, __, ...args] = process.argv;
 
 const cli = new Cli({
   binaryLabel: `Apollo Faker (Demo)`,

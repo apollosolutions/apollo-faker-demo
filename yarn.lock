@@ -492,16 +492,6 @@
   resolved "https://registry.yarnpkg.com/@faker-js/faker/-/faker-6.0.0-alpha.7.tgz#d4383b10c5cd35ec02fafd1bc472b2f85c306cf5"
   integrity sha512-T2nYE8+EfzfkRMLMSm7UvgC7fZ2KkKEyCMeyPVS0q2cuvENbt1SjWyu0bOJ0JqBbTs1g+gYMWMFMXspWlzNVmQ==
 
-"@fontsource/source-code-pro@^4.5.4":
-  version "4.5.4"
-  resolved "https://registry.yarnpkg.com/@fontsource/source-code-pro/-/source-code-pro-4.5.4.tgz#8214d87227c94207854732fb00e5540a57e4fc84"
-  integrity sha512-kJ5MWWX1rw6dTc7t0EkpRajEKNUfWAERat4m1C/NPfR+7LqslXmtNbyizFnK8lm2NfDN52CzWe6dQXFaw3WXww==
-
-"@fontsource/source-sans-pro@^4.5.3":
-  version "4.5.3"
-  resolved "https://registry.yarnpkg.com/@fontsource/source-sans-pro/-/source-sans-pro-4.5.3.tgz#bdb1eeed5db70bcd1f68cd1e8c859834f0e6bc67"
-  integrity sha512-9xWGu3ArKsjf6+WVrNoCUywybTB3rIidpvOI2tByQpzYVOupFUv6qohyrjDrVvPb6XHJQTD0NIzisR7RKhiP7A==
-
 "@graphql-codegen/cli@^2.6.2":
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/cli/-/cli-2.6.2.tgz#a9aa4656141ee0998cae8c7ad7d0bf9ca8e0c9ae"

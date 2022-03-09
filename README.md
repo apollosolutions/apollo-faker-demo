@@ -24,7 +24,7 @@ The tool assumes that you have a federated schema published to Studio.
 
 2. Run the development server:
    ```sh
-   npx github:apollosolutions/apollo-faker-demo --graphref <yourgraph>@<variant> --remote https://yourapi.com/graphql
+   npx github:@apollosolutions/apollo-faker-demo --graphref <yourgraph>@<variant> --remote https://yourapi.com/graphql
    ```
 3. Create a `proposed.graphql` and write some GraphQL schema in it. Any types, fields, arguments, etc, will be merged with the schema found in Apollo Studio.
 4. Run operations against your combined schema in Sandbox. The development server proxies pre-existing types and fields to the `--remote` API. Any new fields are mocked.

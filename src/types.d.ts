@@ -1,4 +1,3 @@
-import { IMockStore } from "@graphql-tools/mock";
 import { GraphQLFieldResolver, GraphQLSchema } from "graphql";
 
 type Mocks = {
