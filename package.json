@@ -1,5 +1,10 @@
 {
   "name": "@apollosolutions/apollo-faker-demo",
   "version": "1.0.0",
+  "license": "MIT",
+  "repository": "https://github.com/apollosolutions/apollo-faker-demo",
+  "author": "lenny@apollographql.com",
+  "type": "module",
+  "main": "src/index.js",
   "bin": "bin/index.js"
 }
