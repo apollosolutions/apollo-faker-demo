@@ -16,7 +16,6 @@
     "@graphql-tools/merge": "^8.2.3",
     "@graphql-tools/mock": "^8.5.2",
     "@graphql-tools/utils": "^8.6.2",
-    "@small-tech/import-fresh": "^1.0.1",
     "chokidar": "^3.5.3",
     "clipanion": "^3.2.0-rc.10",
     "cors": "^2.8.5",
@@ -25,6 +24,7 @@
     "graphql": "^16.3.0",
     "graphql-request": "^4.0.0",
     "graphql-tag": "^2.12.6",
+    "import-fresh": "^3.3.0",
     "rxjs": "^7.5.4",
     "typanion": "^3.7.1"
   },

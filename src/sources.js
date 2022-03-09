@@ -2,7 +2,6 @@ import { fetchApiSchema } from "./schema-fetcher.js";
 import { buildASTSchema, parse } from "graphql";
 import { mergeTypeDefs } from "@graphql-tools/merge";
 import {
-  catchError,
   combineLatest,
   distinct,
   filter,
@@ -11,13 +10,12 @@ import {
   map,
   mergeMap,
   of,
-  retry,
   startWith,
 } from "rxjs";
 import { watch } from "chokidar";
 import { readFile } from "fs/promises";
 import { resolve } from "path";
-import importFresh from "@small-tech/import-fresh";
+import importFresh from "import-fresh";
 import { addMockDirectives, mockDirectivesDefs } from "./mocks/directives.js";
 import { defaultMocks } from "@graphql-tools/mock";
 
@@ -41,21 +39,42 @@ export function observeSources({ graphref, proposedFile, mocksFile }) {
       )
     : of(parse("type Query"));
 
+  const maybeReadFile = async () => {
+    try {
+      return await readFile(proposedFile, "utf-8");
+    } catch (e) {
+      return "type Query";
+    }
+  };
+
+  const maybeParseFile = (/** @type {string} */ sdl) => {
+    try {
+      return parse(sdl);
+    } catch (e) {
+      return undefined;
+    }
+  };
+
   // fetch typedefs from graphql file on every file change
   const proposed = fromEvent(watch(proposedFile), "all").pipe(
-    mergeMap(() => readFile(proposedFile, "utf-8")),
-    retry(10),
-    map((sdl) => parse(sdl)),
-    catchError((err) => of(undefined)),
+    mergeMap(() => maybeReadFile()),
+    map(maybeParseFile),
     startWith(undefined)
   );
 
+  const maybeImportFile = async () => {
+    try {
+      const mod = await importFresh(resolve(process.cwd(), mocksFile));
+      return mod?.default ?? mod ?? {};
+    } catch (e) {
+      return {};
+    }
+  };
+
   // fetch mocks from javascript file on every file change
   const mocks = fromEvent(watch(mocksFile), "all").pipe(
-    mergeMap(() => importFresh(resolve(process.cwd(), mocksFile))),
-    map((mod) => mod.default ?? mod),
+    mergeMap(() => maybeImportFile()),
     map((m) => ({ ...defaultMocks, ...m })),
-    retry(),
     startWith(defaultMocks)
   );
 
