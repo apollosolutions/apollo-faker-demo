@@ -1,6 +1,6 @@
 import { mapSchema, getDirective, MapperKind } from "@graphql-tools/utils";
 import { isListType, isNonNullType, parse } from "graphql";
-import { faker } from "@faker-js/faker";
+// import { faker } from "@faker-js/faker";
 
 export const mockDirectivesDefs = parse(`
   scalar examples__JSON
@@ -46,8 +46,8 @@ function makeMockResolver(template, examples, listLength) {
       : isListType(info.returnType);
 
     const fn = examples
-      ? () => faker.random.arrayElement(examples)
-      : () => faker.fake(template ?? "{{lorem.words}}");
+      ? () => examples[0] // faker.random.arrayElement(examples)
+      : () => "hello world"; // faker.fake(template ?? "{{lorem.words}}");
 
     if (isList) {
       const min = listLength?.min ?? 2;

@@ -2,6 +2,8 @@
   "name": "@apollosolutions/apollo-faker-demo",
   "version": "1.0.0",
   "license": "MIT",
+  "repository": "https://github.com/apollosolutions/apollo-faker-demo",
+  "author": "lenny@apollographql.com",
   "type": "module",
   "main": "src/index.js",
   "bin": "bin/index.js",
@@ -12,7 +14,6 @@
     "build": "yarn codegen && yarn vite build"
   },
   "dependencies": {
-    "@faker-js/faker": "^6.0.0-alpha.7",
     "@graphql-tools/merge": "^8.2.3",
     "@graphql-tools/mock": "^8.5.2",
     "@graphql-tools/utils": "^8.6.2",

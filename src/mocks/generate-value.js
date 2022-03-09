@@ -1,4 +1,4 @@
-import { faker } from "@faker-js/faker";
+// import { faker } from "@faker-js/faker";
 import {
   getNullableType,
   isAbstractType,
@@ -46,7 +46,7 @@ export function generateValueFromType(fieldType, mocks, schema, directives) {
     }
 
     const values = nullableType.getValues().map((v) => v.value);
-    return faker.helpers.shuffle(values)[0];
+    return values[0]; // faker.helpers.shuffle(values)[0];
   } else if (isObjectType(nullableType)) {
     return {};
   } else if (isListType(nullableType)) {
@@ -67,9 +67,10 @@ export function generateValueFromType(fieldType, mocks, schema, directives) {
     if (typeof mock === "function") {
       return mock();
     } else {
-      const __typename = faker.helpers.shuffle(
-        schema.getPossibleTypes(nullableType).slice()
-      )[0]?.name;
+      // const __typename = faker.helpers.shuffle(
+      //   schema.getPossibleTypes(nullableType).slice()
+      // )[0]?.name;
+      const __typename = schema.getPossibleTypes(nullableType).slice()[0]?.name;
 
       return { __typename };
     }
