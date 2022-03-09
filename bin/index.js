@@ -1,20 +1,22 @@
 #!/usr/bin/env node
 
-import { Builtins, Cli } from "clipanion";
-import DefaultCommand from "../src/commands/default.js";
+console.log("hello");
 
-console.log("Running CLI");
+// import { Builtins, Cli } from "clipanion";
+// import DefaultCommand from "../src/commands/default.js";
 
-const [_, __, ...args] = process.argv;
+// console.log("Running CLI");
 
-const cli = new Cli({
-  binaryLabel: `Apollo Faker (Demo)`,
-  binaryName: `apollo-faker-demo`,
-  binaryVersion: `1.0.0`,
-  enableCapture: true,
-  enableColors: true,
-});
+// const [_, __, ...args] = process.argv;
 
-cli.register(DefaultCommand);
-cli.register(Builtins.HelpCommand);
-cli.runExit(args);
+// const cli = new Cli({
+//   binaryLabel: `Apollo Faker (Demo)`,
+//   binaryName: `apollo-faker-demo`,
+//   binaryVersion: `1.0.0`,
+//   enableCapture: true,
+//   enableColors: true,
+// });
+
+// cli.register(DefaultCommand);
+// cli.register(Builtins.HelpCommand);
+// cli.runExit(args);
