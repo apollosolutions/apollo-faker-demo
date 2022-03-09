@@ -3,6 +3,8 @@
 import { Builtins, Cli } from "clipanion";
 import DefaultCommand from "../src/commands/default.js";
 
+console.log("Running CLI");
+
 const [_, __, ...args] = process.argv;
 
 const cli = new Cli({
