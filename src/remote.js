@@ -48,7 +48,6 @@ export function ensureValidOperation(operation, schema) {
 
 /**
  * @param {import("graphql").DocumentNode} documentAST
- * @returns
  */
 function removeUnusedVariables(documentAST) {
   const seenVariables = Object.create(null);
@@ -71,7 +70,6 @@ function removeUnusedVariables(documentAST) {
 
 /**
  * @param {import("graphql").SelectionSetNode} node
- * @returns
  */
 function injectTypename(node) {
   return {
