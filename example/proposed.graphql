@@ -1,7 +1,7 @@
 type Character {
-  foo: String @fake(template: "{{name.firstName}}")
+  favoriteColor: String
 }
 
-type Query {
-  characters(whoo: String): Characters
+input FilterCharacter {
+  favoriteColor: String
 }

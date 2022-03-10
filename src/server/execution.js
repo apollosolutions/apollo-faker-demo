@@ -16,15 +16,18 @@ import { getDirectives } from "@graphql-tools/utils";
 export async function fetchRemote(endpoint, params, remoteSchema) {
   try {
     const operation = parse(params.query);
-    const remoteOperation = ensureValidOperation(operation, remoteSchema);
+    const { operation: remoteOperation, variables } = ensureValidOperation(
+      operation,
+      remoteSchema,
+      params.variables
+    );
     const result = await rawRequest(
       endpoint,
       print(remoteOperation),
-      params.variables
+      variables
     );
     return result.data;
   } catch (e) {
-    // console.log(/** @type {any} */ (e).message);
     return {};
   }
 }
