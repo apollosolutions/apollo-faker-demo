@@ -37,7 +37,7 @@ export async function serialize(graphref, proposedFile) {
     fetchApiSchema(graphref),
     fetchSupergraphSchema(graphref),
     fetchSubgraphSdls(graphref),
-    readFile(proposedFile, "utf-8"),
+    readFile(proposedFile, "utf-8").catch(() => "type Query"),
   ]);
   assert(api, "api missing");
   assert(supergraph, "supergraph missing");
