@@ -14,6 +14,8 @@ Heavily inspired by [graphql-faker](https://github.com/APIs-guru/graphql-faker).
 
 ## Usage
 
+[**View a video walkthrough on Youtube**](https://www.youtube.com/watch?v=BWR5QVZ4c-8)
+
 The tool assumes that you have a federated schema published to Studio.
 
 1. Export your user API key so that it's available for the tool.
