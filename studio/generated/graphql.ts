@@ -2242,6 +2242,28 @@ export type CompositionValidationResult = CompositionResult & {
   workflowTask?: Maybe<CompositionCheckTask>;
 };
 
+export type ContractPreview = {
+  __typename?: 'ContractPreview';
+  result: ContractPreviewResult;
+  upstreamLaunch: Launch;
+};
+
+export type ContractPreviewErrors = {
+  __typename?: 'ContractPreviewErrors';
+  errors: Array<Scalars['String']>;
+  failedAt: ContractVariantFailedStep;
+};
+
+export type ContractPreviewResult = ContractPreviewErrors | ContractPreviewSuccess;
+
+export type ContractPreviewSuccess = {
+  __typename?: 'ContractPreviewSuccess';
+  apiDocument: Scalars['String'];
+  coreDocument: Scalars['String'];
+  fieldCount: Scalars['Int'];
+  typeCount: Scalars['Int'];
+};
+
 export enum ContractVariantFailedStep {
   AddDirectiveDefinitionsIfNotPresent = 'ADD_DIRECTIVE_DEFINITIONS_IF_NOT_PRESENT',
   DirectiveDefinitionLocationAugmenting = 'DIRECTIVE_DEFINITION_LOCATION_AUGMENTING',
@@ -2293,6 +2315,8 @@ export type CoreSchema = {
   apiDocument: Scalars['GraphQLDocument'];
   coreDocument: Scalars['GraphQLDocument'];
   coreHash: Scalars['String'];
+  fieldCount: Scalars['Int'];
+  typeCount: Scalars['Int'];
 };
 
 export type CreateOperationCollectionResult = OperationCollection | PermissionError | ValidationError;
@@ -2955,6 +2979,8 @@ export type GraphVariant = {
   compositionVersion?: Maybe<Scalars['String']>;
   /** Filter configuration used to create the contract schema */
   contractFilterConfig?: Maybe<FilterConfig>;
+  /** Preview a Contract schema built from this source variant. */
+  contractPreview: ContractPreview;
   /** Explorer setting for default headers for a graph */
   defaultHeaders?: Maybe<Scalars['String']>;
   derivedVariantCount: Scalars['Int'];
@@ -3007,6 +3033,12 @@ export type GraphVariant = {
   url?: Maybe<Scalars['String']>;
   /** The last instant that usage information (e.g. operation stat, client stats) was reported for this variant */
   usageLastReportedAt?: Maybe<Scalars['Timestamp']>;
+};
+
+
+/** A variant of a graph, also called a schema tag in parts of our product. */
+export type GraphVariantContractPreviewArgs = {
+  filters: FilterConfigInput;
 };
 
 
@@ -4465,6 +4497,8 @@ export type Query = {
   teamBillingPlan: BillingPlanV2;
   /** The plan started by AccountMutation.startTeamSubscription */
   teamPlan: BillingPlan;
+  /** Schema transformation for the Apollo platform API. Renames types. Internal to Apollo. */
+  transformSchemaForPlatformApi?: Maybe<Scalars['GraphQLDocument']>;
   /** The plan started by AccountMutation.startTrial */
   trialBillingPlan: BillingPlanV2;
   /** The plan started by AccountMutation.startTrial */
@@ -4567,6 +4601,11 @@ export type QueryTeamBillingPlanArgs = {
 
 export type QueryTeamPlanArgs = {
   billingPeriod: BillingPeriod;
+};
+
+
+export type QueryTransformSchemaForPlatformApiArgs = {
+  baseSchema: Scalars['GraphQLDocument'];
 };
 
 
@@ -5834,7 +5873,10 @@ export type ServiceMutation = {
   newKey: GraphApiKey;
   /** Adds an override to the given users permission for this graph */
   overrideUserPermission?: Maybe<Service>;
-  /** Returns a preview of the Core and API schema contracts derived from a source variant and a set of filter configurations */
+  /**
+   * Returns a preview of the Core and API schema contracts derived from a source variant and a set of filter configurations
+   * @deprecated use GraphVariant.contractPreview instead
+   */
   previewContractVariant: ContractVariantPreviewResult;
   /** Promote the schema with the given SHA-256 hash to active for the given variant/tag. */
   promoteSchema: PromoteSchemaResponseOrError;
