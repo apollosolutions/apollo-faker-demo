@@ -1,0 +1,4 @@
+name: apollo-faker-demo
+description: A CLI tool and development server for the "Dream Query" workflow.
+tags:
+  - Schema Design
