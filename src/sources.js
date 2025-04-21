@@ -18,16 +18,18 @@ import { resolve } from "path";
 import importFresh from "import-fresh";
 import { addMockDirectives, mockDirectivesDefs } from "./mocks/directives.js";
 import { defaultMocks } from "@graphql-tools/mock";
+import { buildSubgraphSchema } from "@apollo/subgraph";
 
 /**
  * @param {{
  *  graphref: string | undefined;
  *  proposedFile: string;
  *  mocksFile: string;
+ *  isFederated: boolean;
  * }} params
  * @returns {import("rxjs").Observable<import("./types").Sources>}
  */
-export function observeSources({ graphref, proposedFile, mocksFile }) {
+export function observeSources({ graphref, proposedFile, mocksFile, isFederated }) {
   // fetch api schema from studio every N seconds
   const studioSchema = graphref
     ? interval(60 * 1000).pipe(
@@ -86,8 +88,9 @@ export function observeSources({ graphref, proposedFile, mocksFile }) {
       const merged = mergeTypeDefs(
         [studioTypeDefsClone, proposed, mockDirectivesDefs].filter(mergeFilter)
       );
+      
+      const combinedSchema = isFederated ? addMockDirectives(buildSubgraphSchema({ typeDefs: merged })) : addMockDirectives(buildASTSchema(merged));
 
-      const combinedSchema = addMockDirectives(buildASTSchema(merged));
       const remoteSchema = buildASTSchema(studioTypeDefs);
 
       return {

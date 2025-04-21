@@ -13,7 +13,7 @@ const thisDir = dirname(fileURLToPath(import.meta.url));
  *  proposedFile: string,
  *  sources: () => import("../types").Sources | undefined;
  *  remoteEndpoint: string | undefined;
- *  port: number
+ *  port: number;
  * }} params
  */
 export function createServer({
