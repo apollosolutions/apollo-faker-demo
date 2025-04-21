@@ -13,7 +13,8 @@
     "test": "node --experimental-vm-modules $(yarn bin)/jest src"
   },
   "dependencies": {
-    "@faker-js/faker": "^6.0.0-alpha.7",
+    "@apollo/subgraph": "^2.10.2",
+    "@faker-js/faker": "^6.0.0",
     "@graphql-tools/merge": "^8.2.3",
     "@graphql-tools/mock": "^8.5.2",
     "@graphql-tools/utils": "^8.6.2",

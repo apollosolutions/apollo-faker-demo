@@ -18,6 +18,8 @@ export default class DefaultCommand extends Command {
 
   port = Option.String("--port", "4000");
 
+  isFederated = Option.Boolean("--federated", true)
+
   async execute() {
     /** @type {import("../types.js").Sources | undefined} */
     let sources;
@@ -26,6 +28,7 @@ export default class DefaultCommand extends Command {
       graphref: this.graphref,
       proposedFile: this.proposedFile,
       mocksFile: this.mocksFile,
+      isFederated: this.isFederated,
     }).subscribe((_) => (sources = _));
 
     const server = createServer({
